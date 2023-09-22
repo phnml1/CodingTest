@@ -16,7 +16,7 @@ class BrowserHistory(object):
         self.current = self.current.next
         return None
     def back(self, steps):
-        while steps > 0 and self.current.prev != None:
+        while sgteps > 0 and self.current.prev != None:
              steps -=1
              self.current = self.current.prev
         return self.current.val
