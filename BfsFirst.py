@@ -1,13 +1,13 @@
 
 from collections import deque
 
-
+#외우기
 def NumIsLands(grid):
     number_of_islands= 0
     #행
-    m = len(grid)
+    r = len(grid)
     #열
-    n = len(grid[0])
+    c = len(grid[0])
     visited = [[False]*n for _ in range(m) ]
     
     def bfs(x,y):
@@ -32,11 +32,12 @@ def NumIsLands(grid):
             #땅이면서 & 방문 안했을때
             if grid[i][j]=="1" and not visited[i][j]:
                 bfs(i,j)
-                
+                number_of_islands += 1
                 #dfs()
     return number_of_islands
 
 
+    
 NumIsLands(grid = [
     ["1","1","0","0","0"],
     ["1","1","0","0","0"],
