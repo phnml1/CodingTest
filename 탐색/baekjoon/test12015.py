@@ -15,6 +15,7 @@ for case in arr:
   if ln[len(ln)-1] < case:
     ln.append(case);
   else:
+    # 수열을 연장하기위해 작은값이라도 넣는것
     ln[binary_search(ln,case,0,len(ln)-1)] = case;
 print(len(ln));
     
