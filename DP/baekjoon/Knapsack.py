@@ -10,9 +10,8 @@ for _ in range(n):
 for i in range(1,n+1):
   w,v = stuff[i];
   for j in range(1,k+1):
-    if j-w <= 0:
+    if j-w < 0:
       DP[i][j] = DP[i-1][j];
     else:
       DP[i][j] = max(DP[i-1][j],DP[i-1][j-w]+v);
-print(DP)
 print(DP[n][k]);
