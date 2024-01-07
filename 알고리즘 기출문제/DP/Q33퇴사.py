@@ -1,5 +1,5 @@
 n = int(input());
-arr = []
+arr = [];
 for i in range(n):
   t,p = map(int,input().split());
   arr.append((t,p));
@@ -12,4 +12,4 @@ for i in range(n):
     DP[i+t] = max(DP[i+t], p + DP[i]);
 if DP[n] == 0:
   DP[n] = DP[n-1];
-print(DP[n])
+print(DP[n]);
