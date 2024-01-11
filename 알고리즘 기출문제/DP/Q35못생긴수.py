@@ -10,8 +10,10 @@ i2 = i3 = i5 = 0;
 next2,next3,next5 = 2,3,5;
 
 for l in range(1,n):
+  
   #가능한 곱셈결과 중에서 가장 작은수 선택
   ugly[l] = min(next2,next3,next5);
+  
   # 인덱스에 따라서 곱셈 결과를 증가
   if ugly[l] == next2:
     i2 += 1
@@ -24,3 +26,4 @@ for l in range(1,n):
     next5 = ugly[i5] * 5;
 
 print(ugly[n-1]);
+
