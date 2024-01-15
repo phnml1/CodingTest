@@ -1,3 +1,4 @@
+# 최소신장트리를 만드는 알고리즘
 # 경로 압축 기법
 def find_parent(parent,x):
   if parent[x]!=x:
