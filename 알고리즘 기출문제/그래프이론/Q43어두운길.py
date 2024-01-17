@@ -1,3 +1,4 @@
+# p399
 def find_parent(parent,a):
   if parent[a] != a:
     parent[a] = find_parent(parent,parent[a]);
