@@ -34,21 +34,14 @@ input = sys.stdin.readline
 n = int(input());
 arr = list(map(int,input().split()));
 dp = [[0 for _ in range(n+1)] for _ in range(n+1)];
-datas = []
-for num_len in range(1,n+1):
-  for j in range(1,num_len+1):
-    if num_len == j:
-      dp[j][num_len] = 1;
-    elif num_len-j==1:
-      if arr[j-1] == arr[num_len-1]:
-        dp[j][num_len] = 1;
-    else:
-      if arr[j-1] == arr[num_len-1]:
-        dp[j][num_len] = dp[j+1][num_len-1];
-m = int(input());
-for i in range(m):
-  s,e = map(int,input().split());
-  datas.append((s,e));
-for data in datas:
-  s,e = data;
-  print(dp[s][e]);
+
+for i in range(n):
+  for start in range(n-i):
+    end = start + i #끝지점과 시작지점 설정
+    if start == end:
+      dp[start][end] = 1
+    elif arr[start] == arr[end]:
+      if start + 1 == end:
+        arr[start][end] = 1
+      elif arr[start+1][end-1] == 1:
+        arr[start][end] = 1
