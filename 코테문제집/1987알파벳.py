@@ -36,9 +36,7 @@ def dfs(alphabet,x,y, cnt):
     global maxcnt
     alpha = alphabet.copy()
     alpha.append(board[x][y])
-    maxcnt=max(cnt, maxcnt)
-    if cnt==10:
-      print(alpha);
+    maxcnt=max(cnt, maxcnt);
     for i in range(4):
         nx, ny= x+dx[i], y+dy[i]
         if 0<=nx<n and 0<=ny<m and visited[ord(board[nx][ny])-ord('A')]==0:
@@ -49,4 +47,25 @@ def dfs(alphabet,x,y, cnt):
 visited[ord(board[0][0])-ord('A')]=1
 dfs([],0,0,1)
 print(maxcnt) 
-  
+
+# import sys
+#set 은 시간복잡도가 O(1)
+# R, C = map(int, sys.stdin.readline().split())
+# board = [list(sys.stdin.readline().strip()) for _ in range(R)]
+# dx = [-1, 0, 1, 0]
+# dy = [0, -1, 0, 1]
+# answer = 1
+# def BFS(x, y):
+#     global answer
+#     q = set([(x, y, board[x][y])])
+#     while q:
+#         x, y, ans = q.pop()
+#         for i in range(4):
+#             nx = x + dx[i]
+#             ny = y + dy[i]
+#             if ((0 <= nx < R) and (0 <= ny < C)) and (board[nx][ny] not in ans):
+#                 q.add((nx,ny,ans + board[nx][ny]))
+#                 answer = max(answer, len(ans)+1)
+
+# BFS(0, 0)
+# print(answer)
