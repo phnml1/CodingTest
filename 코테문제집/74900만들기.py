@@ -1,6 +1,6 @@
 t = int(input());
 # eval로도
-
+#n은 몇번째인지 num은 다음에 계산할 숫자
 def dfs(sum, num, kind, n,string):
   if n == N:
     sum = sum + (kind * num)
