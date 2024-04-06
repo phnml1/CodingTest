@@ -1,4 +1,7 @@
+from collections import defaultdict;
+import sys
 import heapq;
+input = sys.stdin.readline
 N = int(input());
 M = int(input());
 graph = [[] for _ in range(N+1)];
@@ -7,7 +10,7 @@ for _ in range(M):
   graph[a].append((c,b));
 start,end = map(int,input().split());
 queue = [];
-costs = [1e9 for _ in range(N+1)];
+costs = defaultdict(lambda : float('inf'));
 costs[start] = 0
 heapq.heappush(queue,(costs[start],start));
 while queue:
@@ -21,4 +24,5 @@ while queue:
       costs[b] = next_cost;
       heapq.heappush(queue,(next_cost, b));
 print(costs[end]);
+    
     
