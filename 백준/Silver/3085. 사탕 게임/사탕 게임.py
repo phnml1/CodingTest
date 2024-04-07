@@ -1,43 +1,37 @@
-def check(data):
-    max_cnt = 1
-    for i in range(N):
-        cnt = 1
-        for j in range(1, N):
-            if data[i][j] == data[i][j-1]:
-                cnt += 1
-            else:
-                cnt = 1
-            max_cnt = max(max_cnt, cnt)
+import sys
+input=sys.stdin.readline
+n = int(input());
+arr = []
 
-        cnt = 1
-        for j in range(1, N):
-            if data[j][i] == data[j-1][i]:
-                cnt += 1
-            else:
-                cnt = 1
-            max_cnt = max(max_cnt, cnt)
-    
-    return max_cnt
-
-N = int(input())
-data = [list(input()) for _ in range(N)]
-ans = 0
-
-for i in range(N):
-    for j in range(N):
-        if j + 1 < N: # 열 범위 체크
-            # 인접한 것끼리 바꿔주기
-            data[i][j], data[i][j+1] = data[i][j+1], data[i][j]
-            cnt = check(data)
-            ans = max(ans, cnt)
-            # 바꾼 것 원래대로 돌려놓기
-            data[i][j], data[i][j+1] = data[i][j+1], data[i][j]
-
-        if i + 1 < N: # 행 범위 체크
-            data[i][j], data[i+1][j] = data[i+1][j], data[i][j]
-            cnt = check(data)
-            ans = max(ans, cnt)
-            # 바꾼 것 원래대로 돌려놓기
-            data[i][j], data[i+1][j] = data[i+1][j], data[i][j]
-
-print(ans)
+for _ in range(n):
+  arr.append(list(input().rstrip()));
+def count_max(arr):
+  result = 1;
+  for i in range(n):
+    count = 1;
+    for j in range(n-1):
+      if arr[i][j] == arr[i][j+1]:
+        count += 1;
+      else:
+        count = 1;
+      result = max(result,count);
+    count = 1;
+    for j in range(n-1):
+      if arr[j][i] == arr[j+1][i]:
+        count += 1;
+      else:
+        count = 1;
+      result = max(result,count);
+  return result;
+res = 1;
+for i in range(n):
+  for j in range(n):
+    if j+1<n:
+      arr[i][j],arr[i][j+1] = arr[i][j+1],arr[i][j];
+      res = max(res,count_max(arr));
+      arr[i][j],arr[i][j+1] = arr[i][j+1],arr[i][j];
+    if i+1<n:
+      arr[i][j],arr[i+1][j] = arr[i+1][j],arr[i][j];
+      res = max(res,count_max(arr));
+      arr[i][j],arr[i+1][j] = arr[i+1][j],arr[i][j];
+print(res);
