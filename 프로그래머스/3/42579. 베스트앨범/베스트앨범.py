@@ -7,13 +7,9 @@ def solution(genres, plays):
             dic[genres[i]][1].append([plays[i],i]);
         else:
             dic[genres[i]] = [plays[i],[[plays[i],i]]];
-    dic = sorted(dic.items(),key = lambda x: -x[1][0]);
-    for item in dic:
-        _,lis = item;
-        numbers = sorted(lis[1],key = lambda x: -x[0]);
-        if len(numbers)>=2:
-            for number in numbers[:2]:
-                answer.append(number[1]);
-        else:
-            answer.append(numbers[0][1])
+                              
+    for (k,v) in sorted(dic.items(),key = lambda x: -x[1][0]):
+        for number in sorted(v[1],key = lambda x: -x[0])[:2]:
+            answer.append(number[1]);
+                              
     return answer
