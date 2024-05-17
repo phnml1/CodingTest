@@ -1,17 +1,19 @@
-def solution(priorities, location):
-    answer = []
-    keys = []
-    for k,v in enumerate(priorities):
-        keys.append((k));
+def solution(p, l):
+    ans = 0
+    m = max(p)
     while True:
-        max_num = max(priorities);
-        if max_num == -1:
-            break;
-        for i in range(len(priorities)):
-            if max_num == priorities[i]:   
-                answer.append(keys[i]);
-                priorities[i] = -1;
-                max_num = max(priorities)
-                
-    print(answer)                   
-    return answer.index(location)+1
+        v = p.pop(0)
+        if m == v:
+            ans += 1
+            if l == 0:
+                break
+            else:
+                l -= 1
+            m = max(p)
+        else:
+            p.append(v)
+            if l == 0:
+                l = len(p)-1
+            else:
+                l -= 1
+    return ans
