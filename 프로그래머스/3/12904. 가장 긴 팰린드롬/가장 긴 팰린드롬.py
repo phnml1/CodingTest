@@ -1,21 +1,8 @@
 def solution(s):
-    answer = 1;
-    for i in range(1,len(s)-1):
-        left = i-1;
-        right = i+1;
-        count = 1;
-        while  0<=left and right<len(s) and s[left] == s[right]:
-            count += 2;
-            left -= 1;
-            right += 1;
-        answer = max(count,answer);
-    for i in range(len(s)-1):
-        left = i;
-        right = i+1;
-        count = 0;
-        while  0<=left and right<len(s) and s[left] == s[right]:
-            count += 2;
-            left -= 1;
-            right += 1;
-        answer = max(count,answer);
+    answer = 0
+    for i in range(len(s)):
+        for j in range(len(s), i, -1):
+            new_s = s[i:j]
+            if new_s == new_s[::-1]:
+                answer = max(answer, len(new_s))
     return answer
