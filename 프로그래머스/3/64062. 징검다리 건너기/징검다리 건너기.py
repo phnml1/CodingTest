@@ -1,23 +1,22 @@
-from collections import defaultdict;
+def continuity(stones, mid,k):
+    cnt = 0;
+    for stone in stones:
+        if (stone - mid) <= 0:
+            cnt += 1;
+        else:
+            cnt = 0;
+        if cnt>=k:
+            break;
+    return cnt;
+
 def solution(stones, k):
-    def continuity(stones,mid):
-        ct = 0;
-        for stone in stones:
-            if (stone - mid) <= 0:
-                ct += 1;
-            else:
-                ct = 0;
-            if ct>=k:
-                break;
-        return ct;
-    answer = 0
-    left, right = 1, max(stones);
-    while left <= right:
-        mid = (left + right)//2;
-        ct = continuity(stones,mid);
-        if ct < k:
-            left = mid + 1;
+    start,end = 1,max(stones);
+    answer = 0;
+    while start<=end:
+        mid = (start + end) // 2;
+        if continuity(stones, mid,k) < k:
+            start = mid+1;
         else:
             answer = mid;
-            right = mid-1;
-    return answer
+            end = mid-1;    
+    return answer;
