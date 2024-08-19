@@ -1,17 +1,20 @@
+#다시풀어라
 import sys;
 input = sys.stdin.readline;
 
-n = int(input().strip());
-a = list(map(int,input().split()));
-location = [0 for _ in range(n)];
-
-for i in range(len(a)):
-  cnt = 0;
-  for j in range(len(a)):
-    if location[j] == 0 and cnt == a[i]:
-      location[j] = i+1;
-      break;
-    elif location[j] == 0:
-      cnt += 1;
+n = int(input());
+arr = list(map(int,input().split()));
+location = [0] * n;
+for i in range(n):
+  count = 0;
+  j = 0;
+  while count < arr[i]:
+    if location[j] == 0:
+      count += 1;
+    j += 1;
+  while location[j] != 0:
+    j+=1;
+  location[j] = str(i+1);
       
-print(' '.join(map(str, location)))
+result = ' '.join(location)
+print(result);
