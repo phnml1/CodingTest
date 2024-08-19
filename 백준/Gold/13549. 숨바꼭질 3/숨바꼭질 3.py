@@ -1,26 +1,28 @@
-import sys
-import heapq
+#다시풀어라
+import sys;
+import heapq;
 input = sys.stdin.readline;
-n,k  = map(int,input().split());
-max_map = 100000;
-distance = [1e9 for _ in range(max_map+1)];
+
+dir = [2,1,-1]
+n,k = map(int,input().split());
+location = [1e9] * 100001;
 queue = [];
 heapq.heappush(queue,(0,n));
 while queue:
-  cost,now = heapq.heappop(queue);
-  if now == k:
-    distance[now] = cost;
+  time,cur = heapq.heappop(queue);
+  if cur == k:
+    location[k] = time;
     break;
-  if distance[now] < cost:
-    continue;
-  if 0<=now*2<=max_map and distance[now*2]>cost:
-    heapq.heappush(queue,(cost,now*2));
-    distance[now*2] = cost
-  if now+1<=max_map and distance[now+1]>cost+1:
-    heapq.heappush(queue,(cost+1,now+1));
-    distance[now+1] = cost+1
-  if now-1>=0 and distance[now-1]>cost+1:
-    heapq.heappush(queue,(cost+1,now-1));
-    distance[now-1] = cost+1;
-  
-print(distance[k]);
+  for i in range(3):
+    next_cur,next_time = cur,time;
+    if i == 0:
+      next_cur *= dir[i];
+      next_time += 0;
+    else:
+      next_cur += dir[i];
+      next_time += 1;
+    if 0<=next_cur<=100000 and location[next_cur] > next_time:
+      heapq.heappush(queue,(next_time,next_cur));
+      location[next_cur] = next_time;
+print(location[k]);
+    
